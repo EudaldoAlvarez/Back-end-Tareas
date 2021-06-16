@@ -14,11 +14,6 @@ const consulta =async(email) =>{
             message : "Ha ocurrido un error con el servidor. Compruebe la conexion a la base de datos.",
             data: error
         };
-        status = 500;
-        return {
-            status,
-            response
-        }
     }
 // Valida que la consulta devuelva registros
     if(tareas?.length){
@@ -27,10 +22,6 @@ const consulta =async(email) =>{
             message: "Consulta con exito",
             data: tareas
         };
-        return {
-            status,
-            response
-        }
     }else{
         // Valida que el email se envió
         if(email == undefined){
@@ -39,7 +30,7 @@ const consulta =async(email) =>{
                 message: "Error al consultar, Verifique los datos enviados."
             }
         }else{
-            // Si no existen tareas aún, manda el estatus 204 "No content"
+            // Si no existen tareas aún manda el estatus 204 "No content"
             status =204;
             response = {
                 message: "No se encontro ninguna tarea",
@@ -47,10 +38,10 @@ const consulta =async(email) =>{
             };
         }
 
-        return {
-            status,
-            response
-        }
+    }
+    return {
+        status,
+        response
     }
 };
 

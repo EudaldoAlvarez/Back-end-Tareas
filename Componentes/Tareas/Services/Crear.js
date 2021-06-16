@@ -11,10 +11,6 @@ const crear = async (email, titulo, descripcion, fecha_inicio, fecha_fin) => {
                 message: "Se ha creado la tarea correctamente."
             }
         };
-        return {
-            status,
-            response
-        }
     } catch (error) {
         // Se valida que los datos necesarios existen.
         if (titulo == undefined || descripcion == undefined || descripcion == undefined || fecha_inicio == undefined || fecha_fin == undefined) {
@@ -30,11 +26,10 @@ const crear = async (email, titulo, descripcion, fecha_inicio, fecha_fin) => {
                 data: error
             };
         }
-
-        return {
-            status,
-            response
-        }
+    }
+    return {
+        status,
+        response
     }
 };
 

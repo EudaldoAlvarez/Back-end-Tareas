@@ -9,7 +9,11 @@ const Editar = async (id, email, titulo, descripcion, fecha_inicio, fecha_fin) =
     try {
         await Dal.query("UPDATE tareas SET titulo = ?, descripcion = ?, fecha_inicio = ? , fecha_fin = ? WHERE tareas.id = ? AND email=?", [titulo, descripcion, fecha_inicio, fecha_fin, id, email])
         tarea = await Dal.query("SELECT * FROM tareas WHERE id=? and email=?", [id, email]);
-
+        status = 200;
+        response = {
+            message: "Actualización con exito",
+            data: tarea
+        };
     } catch (error) {
         // Se valida que los datos requeridos existan.
         if (titulo == undefined || descripcion == undefined || descripcion == undefined || fecha_inicio == undefined || fecha_fin == undefined) {
@@ -25,33 +29,10 @@ const Editar = async (id, email, titulo, descripcion, fecha_inicio, fecha_fin) =
             };
             status = 500;
         }
-        return {
-            status,
-            response
-        }
     }
-    // Valida que exista el Tarea a actualizar
-    if (tarea?.length) {
-        status = 200;
-        response = {
-            message: "Actualización con exito",
-            data: tarea
-        };
-        return {
-            status,
-            response
-        }
-    } else {
-        status = 400;
-        response = {
-            message: "No existe la tarea solicitada.",
-            data: tarea
-        };
-
-        return {
-            status,
-            response
-        }
+    return {
+        status,
+        response
     }
 };
 

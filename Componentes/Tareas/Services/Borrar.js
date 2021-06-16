@@ -13,12 +13,9 @@ const Borrar = async (email, id) => {
             response = {
                 message: "Tarea borrada con exito."
             };
-            return {
-                status,
-                response
-            }
         }
     } catch (error) {
+        status = 500;
         response = {
             message: "Ha ocurrido un error con el servidor. Compruebe la conexion a la base de datos."
         };
